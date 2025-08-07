@@ -18,7 +18,15 @@ def get_entity_status(ha_server, entity_id, token):
 
     # For testing, return mock data if using test URLs
     if ha_server == "http://test":
-        return {"state": "20.5"}  # Mock temperature
+        # Return different mock data based on entity type
+        if "temp" in entity_id.lower():
+            return {"state": "22.5"}  # Mock temperature
+        elif "rain" in entity_id.lower():
+            return {"state": "false"}  # Mock: no rain
+        elif "uv" in entity_id.lower():
+            return {"state": "5.2"}   # Mock: high UV index
+        else:
+            return {"state": "22.5"}  # Default mock temperature
 
     state_res = None
     cache_key = "%s.%s" % (ha_server, entity_id)
@@ -139,7 +147,7 @@ def main(config):
     # Get rain forecast (mock data for testing)
     rain_forecast = False
     if ha_server == "http://test":
-        rain_forecast = False  # Mock: no rain
+        rain_forecast = False  # Mock: no rain (sunny day)
 
     # Get UV index
     entity_id_uv_index = config.get("uv_index_entity")

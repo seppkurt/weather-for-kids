@@ -92,6 +92,12 @@ Make sure your Home Assistant has weather integration configured with the approp
 - Verify your long-lived token has the correct permissions
 - Ensure your Home Assistant URL is accessible
 - Test the app locally with pixlet: `pixlet render weather_for_kids.star ha_url=your_url ha_token=your_token current_temp_entity=your_entity forecast_temp_entity=your_entity rain_forecast_entity=your_entity uv_index_entity=your_entity`
+- For testing with mock data, use `ha_url=http://test` and any entity names: `pixlet render weather_for_kids.star ha_url=http://test ha_token=test current_temp_entity=test forecast_temp_entity=test rain_forecast_entity=test uv_index_entity=test`
+
+### **Pixlet Serve Issues:**
+- **Configuration Required**: When using `pixlet serve`, you must configure the app through the web interface at http://127.0.0.1:8080
+- **Entity Validation**: The app will show errors until all required entities are configured
+- **Mock Data**: Use `http://test` as Home Assistant URL and `test` for all entity IDs to see mock data
 
 ## 📝 Requirements
 
@@ -102,6 +108,46 @@ Make sure your Home Assistant has weather integration configured with the approp
 ## 🤝 Contributing
 
 Feel free to submit issues and enhancement requests!
+
+## 🚧 Known Issues & Future Improvements
+
+### 🎨 **Visual Improvements Needed**
+- **Icons for Non-Readers**: Current text-based icons (🌡️👕👖☔🧢🧴) may not be clear enough for very young children
+- **Pixel Art Suggestions**: Consider using simple pixel art symbols instead of emoji
+- **Color Coding**: Enhance color coding for different weather conditions
+- **Visual Indicators**: Add simple visual indicators (dots, bars, etc.) for quick recognition
+
+### 📊 **Data Source Improvements**
+- **Forecast Data Parsing**: Many weather APIs provide combined forecast data rather than separate entities
+- **Time-based Recommendations**: Consider time of day for clothing recommendations (morning vs afternoon)
+- **Seasonal Adjustments**: Add seasonal logic for clothing recommendations
+- **Location-based UV**: UV index varies significantly by location and time of day
+
+### 🔧 **Technical Enhancements**
+- **Error Handling**: Better handling of missing or invalid weather data
+- **Caching**: Implement smarter caching for weather data
+- **Fallback Values**: Provide sensible defaults when data is unavailable
+- **Multiple Weather Sources**: Support for different weather APIs
+
+### 🎯 **User Experience**
+- **Age-appropriate Language**: Consider different text complexity for different age groups
+- **Parent Controls**: Allow parents to customize recommendations
+- **Weather Alerts**: Add special alerts for extreme weather conditions
+- **Localization**: Support for multiple languages
+
+## 💡 **Suggested Solutions**
+
+### **For Visual Improvements:**
+- Use simple geometric shapes instead of emoji
+- Implement a color-coded system (red for hot, blue for cold, etc.)
+- Add visual bars or dots to represent temperature/UV levels
+- Consider using the Tidbyt's built-in icon library if available
+
+### **For Data Source Issues:**
+- Parse combined forecast entities to extract specific data
+- Use time-based logic to determine appropriate clothing
+- Implement fallback logic when specific entities are unavailable
+- Add configuration for different weather API formats
 
 ## 📄 License
 

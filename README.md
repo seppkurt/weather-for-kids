@@ -4,17 +4,12 @@ A child-friendly weather visualization app for Tidbyt displays that provides clo
 
 ## 📱 What it Shows
 
-The app displays weather information in a kid-friendly format with German text:
+The app displays weather information in a compact 2x3 grid layout with icons:
 
 ```
 ┌─────────────────────────┐
-│    Wetter für Kinder    │
-│  Temperatur: 18.5°C    │
-│  Oberteil: T-Shirt     │
-│  Hose: Short pants      │
-│  Regenschirm: Nein      │
-│  Mütze: Keine Mütze     │
-│  Sonnencreme: Ja       │
+│ 🌡️ 20.5°C │ 👕 T-Shirt │ 👖 Short pants │
+│ ☔ Nein    │ 🧢 Keine    │ 🧴 Sonnencreme │
 └─────────────────────────┘
 ```
 

@@ -164,70 +164,47 @@ def main(config):
     if current_temp != None:
         temp_display = str(current_temp) + "°C"
     
-    # Create display text
-    title_text = "Wetter für Kinder"
-    temp_text = "Temperatur: " + temp_display
-    shirt_text = "Oberteil: " + recommendations["shirt"]
-    pants_text = "Hose: " + recommendations["pants"]
-    umbrella_text = "Regenschirm: " + recommendations["umbrella"]
-    hat_text = "Mütze: " + recommendations["hat"]
-    sun_cream_text = "Sonnencreme: " + recommendations["sun_cream"]
+    # Create display text with icons
+    temp_text = "🌡️ " + temp_display
+    shirt_text = "👕 " + recommendations["shirt"]
+    pants_text = "👖 " + recommendations["pants"]
+    umbrella_text = "☔ " + recommendations["umbrella"]
+    hat_text = "🧢 " + recommendations["hat"]
+    sun_cream_text = "🧴 " + recommendations["sun_cream"]
 
     return render.Root(
         render.Column(
             children=[
-                # Title
+                # Top row: Temperature, Shirt, Pants
                 render.Row(
                     children=[
+                        # Top left: Temperature
                         render.Padding(
-                            pad=(1, 2, 1, 2),
+                            pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=62,
-                                font="tb-8",
-                                content=title_text,
-                                color="#FFFFFF",
-                                align="center",
-                            ),
-                        ),
-                    ]
-                ),
-                # Temperature
-                render.Row(
-                    children=[
-                        render.Padding(
-                            pad=(1, 2, 1, 2),
-                            child=render.WrappedText(
-                                width=62,
+                                width=20,
                                 font="tb-8",
                                 content=temp_text,
                                 color="#FFFF00",
                                 align="center",
                             ),
                         ),
-                    ]
-                ),
-                # Shirt recommendation
-                render.Row(
-                    children=[
+                        # Top middle: Shirt
                         render.Padding(
-                            pad=(1, 2, 1, 2),
+                            pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=62,
+                                width=20,
                                 font="tb-8",
                                 content=shirt_text,
                                 color="#0088FF",
                                 align="center",
                             ),
                         ),
-                    ]
-                ),
-                # Pants recommendation
-                render.Row(
-                    children=[
+                        # Top right: Pants
                         render.Padding(
-                            pad=(1, 2, 1, 2),
+                            pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=62,
+                                width=20,
                                 font="tb-8",
                                 content=pants_text,
                                 color="#00FF00",
@@ -236,43 +213,36 @@ def main(config):
                         ),
                     ]
                 ),
-                # Umbrella recommendation
+                # Bottom row: Umbrella, Hat, Sun Cream
                 render.Row(
                     children=[
+                        # Bottom left: Umbrella
                         render.Padding(
-                            pad=(1, 2, 1, 2),
+                            pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=62,
+                                width=20,
                                 font="tb-8",
                                 content=umbrella_text,
                                 color="#00FFFF",
                                 align="center",
                             ),
                         ),
-                    ]
-                ),
-                # Hat recommendation
-                render.Row(
-                    children=[
+                        # Bottom middle: Hat
                         render.Padding(
-                            pad=(1, 2, 1, 2),
+                            pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=62,
+                                width=20,
                                 font="tb-8",
                                 content=hat_text,
                                 color="#FF0000",
                                 align="center",
                             ),
                         ),
-                    ]
-                ),
-                # Sun cream recommendation
-                render.Row(
-                    children=[
+                        # Bottom right: Sun Cream
                         render.Padding(
-                            pad=(1, 2, 1, 2),
+                            pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=62,
+                                width=20,
                                 font="tb-8",
                                 content=sun_cream_text,
                                 color="#FFA500",

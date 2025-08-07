@@ -62,21 +62,12 @@ weather_for_kids:
 
 ## 🚀 Installation
 
-### For Tidbyt Display (Recommended)
-
 1. Copy the `weather_for_kids.star` file to your Tidbyt apps directory
 2. Configure the app with your Home Assistant settings:
    - Home Assistant URL
    - Long-lived access token
    - Entity IDs for temperature and rain forecast
 3. The app will update automatically
-
-### For AppDaemon (Alternative)
-
-1. Copy the `app.py` file to your AppDaemon apps directory
-2. Add the configuration to your `apps.yaml` file
-3. Restart AppDaemon
-4. The app will update every 5 minutes
 
 ## 📊 Data Sources
 
@@ -96,29 +87,16 @@ Make sure your Home Assistant has weather integration configured with the approp
 
 ## 🔍 Troubleshooting
 
-### For Tidbyt Display
 - Check that all entity IDs exist in your Home Assistant
 - Verify your long-lived token has the correct permissions
 - Ensure your Home Assistant URL is accessible
 - Test the app locally with pixlet: `pixlet render weather_for_kids.star ha_url=your_url ha_token=your_token current_temp_entity=your_entity forecast_temp_entity=your_entity rain_forecast_entity=your_entity`
 
-### For AppDaemon
-- Check that all entity IDs exist in your Home Assistant
-- Verify your long-lived token has the correct permissions
-- Ensure your Home Assistant URL is accessible
-- Check AppDaemon logs for any error messages
-
 ## 📝 Requirements
 
-### For Tidbyt Display
 - Tidbyt display
 - Home Assistant with weather integration
 - Long-lived access token from Home Assistant
-
-### For AppDaemon
-- AppDaemon 4.x
-- Home Assistant with weather integration
-- Python requests library
 
 ## 🤝 Contributing
 

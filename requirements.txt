@@ -1,0 +1,2 @@
+requests>=2.25.1
+appdaemon>=4.0.0

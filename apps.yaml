@@ -1,0 +1,8 @@
+weather_for_kids:
+  module: app
+  class: WeatherForKids
+  home_assistant_url: "http://your-home-assistant-url:8123"
+  long_living_token: "your-long-living-token-here"
+  temperature_forecast_entity: "sensor.weather_temperature_forecast"
+  rain_forecast_entity: "sensor.weather_rain_forecast"
+  current_temperature_entity: "sensor.weather_current_temperature"

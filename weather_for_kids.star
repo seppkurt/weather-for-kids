@@ -41,7 +41,7 @@ def skip_execution():
     print("skip_execution")
     return []
 
-def get_clothing_recommendations(temp, rain_forecast):
+def get_clothing_recommendations(temp, rain_forecast, uv_index):
     recommendations = {}
     
     # Upper body recommendation
@@ -67,6 +67,12 @@ def get_clothing_recommendations(temp, rain_forecast):
         recommendations["hat"] = "Mütze"
     else:
         recommendations["hat"] = "Keine Mütze"
+    
+    # Sun cream recommendation based on UV index
+    if uv_index >= 3:
+        recommendations["sun_cream"] = "Sonnencreme"
+    else:
+        recommendations["sun_cream"] = "Keine Sonnencreme"
     
     return recommendations
 
@@ -104,6 +110,12 @@ def get_schema():
                 desc = "Entity for rain forecast (boolean: true/false).",
                 icon = "cloud-rain",
             ),
+            schema.Text(
+                id = "uv_index_entity",
+                name = "UV Index Entity",
+                desc = "Entity for UV index (number 0-11+).",
+                icon = "sun",
+            ),
         ],
     )
 
@@ -129,13 +141,23 @@ def main(config):
     if ha_server == "http://test":
         rain_forecast = False  # Mock: no rain
 
+    # Get UV index
+    entity_id_uv_index = config.get("uv_index_entity")
+    entity_status = get_entity_status(ha_server, entity_id_uv_index, token)
+    if entity_status == None:
+        return skip_execution()
+    
+    uv_index = 0
+    if entity_status["state"] != "":
+        uv_index = float(entity_status["state"])
+
     # Use forecast temperature for recommendations, fallback to current
     temp_for_recommendations = current_temp
     if forecast_temp != None:
         temp_for_recommendations = forecast_temp
     
     # Get clothing recommendations
-    recommendations = get_clothing_recommendations(temp_for_recommendations, rain_forecast)
+    recommendations = get_clothing_recommendations(temp_for_recommendations, rain_forecast, uv_index)
     
     # Format temperature display
     temp_display = "N/A"
@@ -149,6 +171,7 @@ def main(config):
     pants_text = "Hose: " + recommendations["pants"]
     umbrella_text = "Regenschirm: " + recommendations["umbrella"]
     hat_text = "Mütze: " + recommendations["hat"]
+    sun_cream_text = "Sonnencreme: " + recommendations["sun_cream"]
 
     return render.Root(
         render.Column(
@@ -238,6 +261,21 @@ def main(config):
                                 font="tb-8",
                                 content=hat_text,
                                 color="#FF0000",
+                                align="center",
+                            ),
+                        ),
+                    ]
+                ),
+                # Sun cream recommendation
+                render.Row(
+                    children=[
+                        render.Padding(
+                            pad=(1, 2, 1, 2),
+                            child=render.WrappedText(
+                                width=62,
+                                font="tb-8",
+                                content=sun_cream_text,
+                                color="#FFA500",
                                 align="center",
                             ),
                         ),

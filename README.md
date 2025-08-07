@@ -14,6 +14,7 @@ The app displays weather information in a kid-friendly format with German text:
 │  Hose: Short pants      │
 │  Regenschirm: Nein      │
 │  Mütze: Keine Mütze     │
+│  Sonnencreme: Ja       │
 └─────────────────────────┘
 ```
 
@@ -36,6 +37,10 @@ The app automatically recommends appropriate clothing based on temperature:
 ### 🧢 Hat (Mütze)
 - **Mütze**: When temperature < 7°C
 - **Keine Mütze**: When temperature ≥ 7°C
+
+### 🧴 Sun Cream (Sonnencreme)
+- **Sonnencreme**: When UV index ≥ 3
+- **Keine Sonnencreme**: When UV index < 3
 
 ## ⚙️ Configuration
 
@@ -75,6 +80,7 @@ The app connects to Home Assistant to get:
 - Current temperature
 - Temperature forecast
 - Rain forecast
+- UV index
 
 Make sure your Home Assistant has weather integration configured with the appropriate entities.
 
@@ -90,7 +96,7 @@ Make sure your Home Assistant has weather integration configured with the approp
 - Check that all entity IDs exist in your Home Assistant
 - Verify your long-lived token has the correct permissions
 - Ensure your Home Assistant URL is accessible
-- Test the app locally with pixlet: `pixlet render weather_for_kids.star ha_url=your_url ha_token=your_token current_temp_entity=your_entity forecast_temp_entity=your_entity rain_forecast_entity=your_entity`
+- Test the app locally with pixlet: `pixlet render weather_for_kids.star ha_url=your_url ha_token=your_token current_temp_entity=your_entity forecast_temp_entity=your_entity rain_forecast_entity=your_entity uv_index_entity=your_entity`
 
 ## 📝 Requirements
 

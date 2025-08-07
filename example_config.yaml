@@ -1,0 +1,25 @@
+# Example configuration for Weather for Kids app
+# Copy this to your apps.yaml and update with your actual values
+
+weather_for_kids:
+  module: app
+  class: WeatherForKids
+  
+  # Your Home Assistant URL (replace with your actual URL)
+  home_assistant_url: "http://192.168.1.100:8123"
+  
+  # Your long-lived access token from Home Assistant
+  # Generate this in Home Assistant: Profile > Long-Lived Access Tokens
+  long_living_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+  
+  # Entity IDs for weather data
+  # Replace with your actual entity IDs from Home Assistant
+  temperature_forecast_entity: "sensor.weather_temperature_forecast"
+  rain_forecast_entity: "sensor.weather_rain_forecast"
+  current_temperature_entity: "sensor.weather_current_temperature"
+
+# Example entity IDs you might use:
+# - sensor.openweathermap_temperature
+# - sensor.weather_forecast_temperature
+# - sensor.rain_forecast
+# - sensor.current_temperature

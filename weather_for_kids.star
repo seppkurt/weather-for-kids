@@ -54,33 +54,33 @@ def get_clothing_recommendations(temp, rain_forecast, uv_index):
     
     # Upper body recommendation
     if temp >= 16:
-        recommendations["shirt"] = "T-Shirt"
+        recommendations["shirt"] = "Shirt"
     else:
         recommendations["shirt"] = "Pullover"
     
     # Pants recommendation
     if temp >= 12:
-        recommendations["pants"] = "Short pants"
+        recommendations["pants"] = "kurze Hose"
     else:
-        recommendations["pants"] = "Long pants"
+        recommendations["pants"] = "lange Hose"
     
     # Umbrella recommendation
     if rain_forecast:
         recommendations["umbrella"] = "Regenschirm"
     else:
-        recommendations["umbrella"] = "Kein Regenschirm"
+        recommendations["umbrella"] = "kein Regenschirm"
     
     # Hat recommendation
     if temp < 7:
         recommendations["hat"] = "Mütze"
     else:
-        recommendations["hat"] = "Keine Mütze"
+        recommendations["hat"] = "keine Mütze"
     
     # Sun cream recommendation based on UV index
     if uv_index >= 3:
-        recommendations["sun_cream"] = "Sonnencreme"
+        recommendations["sun_cream"] = "Creme"
     else:
-        recommendations["sun_cream"] = "Keine Sonnencreme"
+        recommendations["sun_cream"] = "keine Creme"
     
     return recommendations
 
@@ -172,13 +172,13 @@ def main(config):
     if current_temp != None:
         temp_display = str(current_temp) + "°C"
     
-    # Create display text with icons
-    temp_text = "🌡️ " + temp_display
-    shirt_text = "👕 " + recommendations["shirt"]
-    pants_text = "👖 " + recommendations["pants"]
-    umbrella_text = "☔ " + recommendations["umbrella"]
-    hat_text = "🧢 " + recommendations["hat"]
-    sun_cream_text = "🧴 " + recommendations["sun_cream"]
+    # Create display text in German
+    temp_text = temp_display
+    shirt_text = recommendations["shirt"]
+    pants_text = recommendations["pants"]
+    umbrella_text = recommendations["umbrella"]
+    hat_text = recommendations["hat"]
+    sun_cream_text = recommendations["sun_cream"]
 
     return render.Root(
         render.Column(
@@ -191,9 +191,9 @@ def main(config):
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=20,
-                                font="tb-8",
+                                font="tom-thumb",
                                 content=temp_text,
-                                color="#FFFF00",
+                                color="#FFFF00",  # yellow
                                 align="center",
                             ),
                         ),
@@ -202,9 +202,9 @@ def main(config):
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=20,
-                                font="tb-8",
+                                font="tom-thumb",
                                 content=shirt_text,
-                                color="#0088FF",
+                                color="#0088FF",  # blue
                                 align="center",
                             ),
                         ),
@@ -213,9 +213,9 @@ def main(config):
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=20,
-                                font="tb-8",
+                                font="tom-thumb",
                                 content=pants_text,
-                                color="#00FF00",
+                                color="#00FF00",  # green
                                 align="center",
                             ),
                         ),
@@ -229,9 +229,9 @@ def main(config):
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=20,
-                                font="tb-8",
+                                font="tom-thumb",
                                 content=umbrella_text,
-                                color="#00FFFF",
+                                color="#00FFFF",  # cyan
                                 align="center",
                             ),
                         ),
@@ -240,9 +240,9 @@ def main(config):
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=20,
-                                font="tb-8",
+                                font="tom-thumb",
                                 content=hat_text,
-                                color="#FF0000",
+                                color="#FF0000",  # red
                                 align="center",
                             ),
                         ),
@@ -251,9 +251,9 @@ def main(config):
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=20,
-                                font="tb-8",
+                                font="tom-thumb",
                                 content=sun_cream_text,
-                                color="#FFA500",
+                                color="#FFA500",  # orange
                                 align="center",
                             ),
                         ),

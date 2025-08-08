@@ -8,8 +8,8 @@ The app displays weather information in a compact 2x3 grid layout with icons:
 
 ```
 ┌─────────────────────────┐
-│ 🌡️ 20.5°C │ 👕 T-Shirt │ 👖 Short pants │
-│ ☔ Nein    │ 🧢 Keine    │ 🧴 Sonnencreme │
+│ 22.5°C │ Shirt │ kurze Hose │
+│ kein Regenschirm │ keine Mütze │ Creme │
 └─────────────────────────┘
 ```
 
@@ -18,24 +18,24 @@ The app displays weather information in a compact 2x3 grid layout with icons:
 The app automatically recommends appropriate clothing based on temperature:
 
 ### 👕 Upper Body (Oberteil)
-- **T-Shirt**: When temperature ≥ 16°C
+- **Shirt**: When temperature ≥ 16°C
 - **Pullover**: When temperature < 16°C
 
 ### 👖 Pants (Hose)
-- **Short pants**: When temperature ≥ 12°C
-- **Long pants**: When temperature < 12°C
+- **kurze Hose**: When temperature ≥ 12°C
+- **lange Hose**: When temperature < 12°C
 
 ### ☔ Umbrella (Regenschirm)
 - **Regenschirm**: When rain is forecasted
-- **Kein Regenschirm**: When no rain is forecasted
+- **kein Regenschirm**: When no rain is forecasted
 
 ### 🧢 Hat (Mütze)
 - **Mütze**: When temperature < 7°C
-- **Keine Mütze**: When temperature ≥ 7°C
+- **keine Mütze**: When temperature ≥ 7°C
 
 ### 🧴 Sun Cream (Sonnencreme)
-- **Sonnencreme**: When UV index ≥ 3
-- **Keine Sonnencreme**: When UV index < 3
+- **Creme**: When UV index ≥ 3
+- **keine Creme**: When UV index < 3
 
 ## ⚙️ Configuration
 

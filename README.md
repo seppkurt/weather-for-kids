@@ -31,8 +31,8 @@ The app automatically recommends appropriate clothing based on temperature:
 - **lange Hose**: When temperature < 12°C
 
 ### ☔ Umbrella (Regenschirm)
-- **Regenschirm**: When rain is forecasted
-- **kein Regenschirm**: When no rain is forecasted
+- **Regenschirm**: When rain intensity ≥ 0.5 mm/h (light rain or drizzle)
+- **kein Schirm**: When rain intensity < 0.5 mm/h (no rain)
 
 ### 🧢 Hat (Mütze)
 - **Mütze**: When temperature < 7°C
@@ -79,7 +79,7 @@ weather_for_kids:
 The app connects to Home Assistant to get:
 - Current temperature
 - Temperature forecast
-- Rain forecast
+- Rain intensity (mm/h) - threshold: ≥ 0.5 mm/h for umbrella recommendation
 - UV index
 
 Make sure your Home Assistant has weather integration configured with the appropriate entities.

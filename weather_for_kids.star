@@ -22,7 +22,7 @@ def get_entity_status(ha_server, entity_id, token):
         if "temp" in entity_id.lower():
             return {"state": "22.5"}  # Mock temperature
         elif "rain" in entity_id.lower():
-            return {"state": "false"}  # Mock: no rain
+            return {"state": "2.5"}  # Mock: moderate rain (2.5 mm/h)
         elif "uv" in entity_id.lower():
             return {"state": "5.2"}   # Mock: high UV index
         else:
@@ -133,7 +133,7 @@ def get_schema():
             schema.Text(
                 id = "rain_forecast_entity",
                 name = "Rain Forecast Entity",
-                desc = "Entity for rain forecast (boolean: true/false).",
+                desc = "Entity for rain intensity in mm/h (e.g., 0.0 = no rain, 2.5 = moderate rain).",
                 icon = "cloud-rain",
             ),
             schema.Text(
@@ -166,6 +166,14 @@ def main(config):
     rain_forecast = False
     if ha_server == "http://test":
         rain_forecast = False  # Mock: no rain (sunny day)
+    else:
+        # Parse rain data from mm/h entity
+        entity_id_rain_forecast = config.get("rain_forecast_entity")
+        rain_entity_status = get_entity_status(ha_server, entity_id_rain_forecast, token)
+        if rain_entity_status and rain_entity_status["state"] != "":
+            rain_mmh = float(rain_entity_status["state"])
+            # Threshold: 0.5 mm/h - light rain or drizzle
+            rain_forecast = rain_mmh >= 0.5
 
     # Get UV index
     entity_id_uv_index = config.get("uv_index_entity")

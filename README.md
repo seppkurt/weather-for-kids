@@ -82,6 +82,21 @@ The app connects to Home Assistant to get:
 - Rain intensity (mm/h) - threshold: ≥ 0.5 mm/h for umbrella recommendation
 - UV index
 
+### 🌦️ Weather Integration Options
+
+For the best weather data, consider these Home Assistant integrations:
+
+**Recommended for Germany:**
+- **[Deutscher Wetterdienst](https://github.com/FL550/dwd_weather)** (HACS) - Official German weather service
+- **[Meteorologisk](https://www.home-assistant.io/integrations/met/)** (Core) - Default HA integration, global coverage
+
+**Other Popular Options:**
+- **[AccuWeather](https://www.home-assistant.io/integrations/accuweather/)** - Extensive data, requires email signup
+- **[OpenWeatherMap](https://www.home-assistant.io/integrations/openweathermap/)** - Global coverage, requires credit card
+- **[Open-Meteo](https://www.home-assistant.io/integrations/open_meteo/)** - Free, global coverage
+
+📖 **Complete Guide:** [Home Assistant Weather Integrations](https://community.home-assistant.io/t/definitive-guide-to-weather-integrations/736419)
+
 Make sure your Home Assistant has weather integration configured with the appropriate entities.
 
 ## 🎨 Display Features

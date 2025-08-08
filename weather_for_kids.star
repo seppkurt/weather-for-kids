@@ -84,7 +84,7 @@ def get_clothing_recommendations(temp, rain_forecast, uv_index):
     
     # Umbrella recommendation
     if rain_forecast:
-        recommendations["umbrella"] = "Regenschirm"
+        recommendations["umbrella"] = "Schirm"
     else:
         recommendations["umbrella"] = "kein Schirm"
     
@@ -151,6 +151,7 @@ def main(config):
 
     # Get current temperature
     entity_id_current_temp = config.get("current_temp_entity")
+    print("Current temp entity ID:", entity_id_current_temp)
     entity_status = get_entity_status(ha_server, entity_id_current_temp, token)
     if entity_status == None:
         return skip_execution()
@@ -158,25 +159,50 @@ def main(config):
     current_temp = None
     if entity_status["state"] != "":
         current_temp = float(entity_status["state"])
+        print("Current temp value:", current_temp)
+    else:
+        print("Current temp state is empty")
 
-    # Get forecast temperature (use same as current for testing)
-    forecast_temp = current_temp
+    # Get forecast temperature
+    forecast_temp = None
+    if ha_server == "http://test":
+        forecast_temp = 25.0  # Mock: different from current for testing
+        print("Forecast temp (mock):", forecast_temp)
+    else:
+        entity_id_forecast_temp = config.get("forecast_temp_entity")
+        print("Forecast temp entity ID:", entity_id_forecast_temp)
+        entity_status = get_entity_status(ha_server, entity_id_forecast_temp, token)
+        if entity_status == None:
+            return skip_execution()
+        
+        if entity_status["state"] != "":
+            forecast_temp = float(entity_status["state"])
+            print("Forecast temp value:", forecast_temp)
+        else:
+            print("Forecast temp state is empty")
 
     # Get rain forecast (mock data for testing)
     rain_forecast = False
     if ha_server == "http://test":
         rain_forecast = False  # Mock: no rain (sunny day)
+        print("Rain forecast (mock):", rain_forecast)
     else:
         # Parse rain data from mm/h entity
         entity_id_rain_forecast = config.get("rain_forecast_entity")
+        print("Rain forecast entity ID:", entity_id_rain_forecast)
         rain_entity_status = get_entity_status(ha_server, entity_id_rain_forecast, token)
         if rain_entity_status and rain_entity_status["state"] != "":
             rain_mmh = float(rain_entity_status["state"])
+            print("Rain intensity (mm/h):", rain_mmh)
             # Threshold: 0.5 mm/h - light rain or drizzle
             rain_forecast = rain_mmh >= 0.5
+            print("Rain forecast (calculated):", rain_forecast)
+        else:
+            print("Rain entity state is empty")
 
     # Get UV index
     entity_id_uv_index = config.get("uv_index_entity")
+    print("UV index entity ID:", entity_id_uv_index)
     entity_status = get_entity_status(ha_server, entity_id_uv_index, token)
     if entity_status == None:
         return skip_execution()
@@ -184,6 +210,9 @@ def main(config):
     uv_index = 0
     if entity_status["state"] != "":
         uv_index = float(entity_status["state"])
+        print("UV index value:", uv_index)
+    else:
+        print("UV index state is empty")
 
     # Use forecast temperature for recommendations, fallback to current
     temp_for_recommendations = current_temp

@@ -4,12 +4,13 @@ A child-friendly weather visualization app for Tidbyt displays that provides clo
 
 ## 📱 What it Shows
 
-The app displays weather information in a compact 2x3 grid layout with icons:
+The app displays weather information in a compact 2-column, 3-row layout:
 
 ```
 ┌─────────────────────────┐
-│ 22.5°C │ Shirt │ kurze Hose │
-│ kein Regenschirm │ keine Mütze │ Creme │
+│ 22.5°C │ Shirt │
+│ kurze Hose │ kein Schirm │
+│ keine Mütze │ Creme │
 └─────────────────────────┘
 ```
 

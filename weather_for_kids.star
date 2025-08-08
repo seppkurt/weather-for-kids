@@ -68,7 +68,7 @@ def get_clothing_recommendations(temp, rain_forecast, uv_index):
     if rain_forecast:
         recommendations["umbrella"] = "Regenschirm"
     else:
-        recommendations["umbrella"] = "kein Regenschirm"
+        recommendations["umbrella"] = "kein Schirm"
     
     # Hat recommendation
     if temp < 7:
@@ -183,74 +183,79 @@ def main(config):
     return render.Root(
         render.Column(
             children=[
-                # Top row: Temperature, Shirt, Pants
+                # Row 1: Temperature, Shirt
                 render.Row(
                     children=[
-                        # Top left: Temperature
+                        # Left column: Temperature
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=20,
+                                width=30,
                                 font="tom-thumb",
                                 content=temp_text,
                                 color="#FFFF00",  # yellow
                                 align="center",
                             ),
                         ),
-                        # Top middle: Shirt
+                        # Right column: Shirt
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=20,
+                                width=30,
                                 font="tom-thumb",
                                 content=shirt_text,
                                 color="#0088FF",  # blue
                                 align="center",
                             ),
                         ),
-                        # Top right: Pants
+                    ]
+                ),
+                # Row 2: Pants, Umbrella
+                render.Row(
+                    children=[
+                        # Left column: Pants
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=20,
+                                width=30,
                                 font="tom-thumb",
                                 content=pants_text,
                                 color="#00FF00",  # green
                                 align="center",
                             ),
                         ),
-                    ]
-                ),
-                # Bottom row: Umbrella, Hat, Sun Cream
-                render.Row(
-                    children=[
-                        # Bottom left: Umbrella
+                        # Right column: Umbrella
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=20,
+                                width=30,
                                 font="tom-thumb",
                                 content=umbrella_text,
                                 color="#00FFFF",  # cyan
                                 align="center",
                             ),
                         ),
-                        # Bottom middle: Hat
+                    ]
+                ),
+                # Row 3: Hat, Sun Cream
+                render.Row(
+                    children=[
+                        # Left column: Hat
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=20,
+                                width=30,
                                 font="tom-thumb",
                                 content=hat_text,
                                 color="#FF0000",  # red
                                 align="center",
                             ),
                         ),
-                        # Bottom right: Sun Cream
+                        # Right column: Sun Cream
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=20,
+                                width=30,
                                 font="tom-thumb",
                                 content=sun_cream_text,
                                 color="#FFA500",  # orange

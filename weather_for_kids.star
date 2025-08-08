@@ -49,6 +49,24 @@ def skip_execution():
     print("skip_execution")
     return []
 
+def get_conditional_items(umbrella_text, hat_text, sun_cream_text):
+    """Return only the items that are needed (not 'kein' or 'keine')"""
+    items = []
+    
+    if "kein" not in umbrella_text and "keine" not in umbrella_text:
+        items.append(umbrella_text)
+    
+    if "kein" not in hat_text and "keine" not in hat_text:
+        items.append(hat_text)
+    
+    if "kein" not in sun_cream_text and "keine" not in sun_cream_text:
+        items.append(sun_cream_text)
+    
+    if len(items) == 0:
+        return "Alles gut!"
+    else:
+        return " + ".join(items)
+
 def get_clothing_recommendations(temp, rain_forecast, uv_index):
     recommendations = {}
     
@@ -173,9 +191,9 @@ def main(config):
         temp_display = str(current_temp) + "°C"
     
     # Create display text in German
-    temp_text = temp_display
-    shirt_text = recommendations["shirt"]
-    pants_text = recommendations["pants"]
+    temp_now_text = temp_display
+    temp_max_text = str(forecast_temp) + "°C" if forecast_temp != None else temp_display
+    shirt_pants_text = recommendations["shirt"] + " + " + recommendations["pants"]
     umbrella_text = recommendations["umbrella"]
     hat_text = recommendations["hat"]
     sun_cream_text = recommendations["sun_cream"]
@@ -183,82 +201,59 @@ def main(config):
     return render.Root(
         render.Column(
             children=[
-                # Row 1: Temperature, Shirt
+                # Row 1: Current Temperature, Max Temperature
                 render.Row(
                     children=[
-                        # Left column: Temperature
+                        # Left column: Current Temperature
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=30,
                                 font="tom-thumb",
-                                content=temp_text,
+                                content=temp_now_text,
                                 color="#FFFF00",  # yellow
                                 align="center",
                             ),
                         ),
-                        # Right column: Shirt
+                        # Right column: Max Temperature
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
                                 width=30,
                                 font="tom-thumb",
-                                content=shirt_text,
+                                content=temp_max_text,
+                                color="#FFA500",  # orange
+                                align="center",
+                            ),
+                        ),
+                    ]
+                ),
+                # Row 2: Shirt + Pants combined
+                render.Row(
+                    children=[
+                        render.Padding(
+                            pad=(1, 1, 1, 1),
+                            child=render.WrappedText(
+                                width=62,
+                                font="tom-thumb",
+                                content=shirt_pants_text,
                                 color="#0088FF",  # blue
                                 align="center",
                             ),
                         ),
                     ]
                 ),
-                # Row 2: Pants, Umbrella
+                # Row 3: Umbrella, Hat, Sun Cream (only if needed)
                 render.Row(
                     children=[
-                        # Left column: Pants
+                        # Only show items if they are needed
                         render.Padding(
                             pad=(1, 1, 1, 1),
                             child=render.WrappedText(
-                                width=30,
+                                width=62,
                                 font="tom-thumb",
-                                content=pants_text,
+                                content=get_conditional_items(umbrella_text, hat_text, sun_cream_text),
                                 color="#00FF00",  # green
-                                align="center",
-                            ),
-                        ),
-                        # Right column: Umbrella
-                        render.Padding(
-                            pad=(1, 1, 1, 1),
-                            child=render.WrappedText(
-                                width=30,
-                                font="tom-thumb",
-                                content=umbrella_text,
-                                color="#00FFFF",  # cyan
-                                align="center",
-                            ),
-                        ),
-                    ]
-                ),
-                # Row 3: Hat, Sun Cream
-                render.Row(
-                    children=[
-                        # Left column: Hat
-                        render.Padding(
-                            pad=(1, 1, 1, 1),
-                            child=render.WrappedText(
-                                width=30,
-                                font="tom-thumb",
-                                content=hat_text,
-                                color="#FF0000",  # red
-                                align="center",
-                            ),
-                        ),
-                        # Right column: Sun Cream
-                        render.Padding(
-                            pad=(1, 1, 1, 1),
-                            child=render.WrappedText(
-                                width=30,
-                                font="tom-thumb",
-                                content=sun_cream_text,
-                                color="#FFA500",  # orange
                                 align="center",
                             ),
                         ),

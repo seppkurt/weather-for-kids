@@ -4,13 +4,17 @@ A child-friendly weather visualization app for Tidbyt displays that provides clo
 
 ## 📱 What it Shows
 
-The app displays weather information in a compact 2-column, 3-row layout:
+The app displays weather information in a compact 3-row layout:
+
+**Row 1**: Current temperature (left) and max temperature (right)
+**Row 2**: Combined shirt and pants recommendation
+**Row 3**: Only shows items that are needed (umbrella, hat, sun cream)
 
 ```
 ┌─────────────────────────┐
-│ 22.5°C │ Shirt │
-│ kurze Hose │ kein Schirm │
-│ keine Mütze │ Creme │
+│ 22.5°C │ 22.5°C │
+│ Shirt + kurze Hose │
+│ Creme │
 └─────────────────────────┘
 ```
 
